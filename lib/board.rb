@@ -1,7 +1,7 @@
 require './lib/piece'
 class Board
   attr_accessor :board, :piece
-  
+
   def initialize
     @board = Array.new(8) { Array.new(8) }
     @piece = {}
@@ -30,22 +30,16 @@ class Board
   end
 
   def place_pawns(color, row)
-    board[row].map!.with_index {|piece, column| piece = Piece.new(row, column, color)}
+    board[row].map!.with_index {|piece, column| piece = Piece.new(color)}
   end
 
   def place_row(color)
     color == 'white' ? board[7] = initial_row : board[0] = initial_row
   end
-  
+
   def initial_row
     ['r', 'k', 'b', 'Q', 'K', 'b', 'k', 'r' ]
   end
-  
-  # def get_moves(row,column,board)
-  #   return [] if piece[:object].nil?
-
-  #   piece[:object].get_moves(row, column, board) 
-  # end
 
   def show_board
     board.each_with_index do |row, index|
@@ -61,4 +55,4 @@ end
 board = Board.new
 board.board[0][0] = Piece.new('white')
 board.board[7][7] = Piece.new('black')
-board.select_piece(0,1)
+board.select_piece(0, 1)
