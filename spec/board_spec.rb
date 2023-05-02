@@ -15,8 +15,16 @@ describe Board do
   end
 
   describe '#starting_board' do
-    xit 'changes the board' do
+    it 'changes the board' do
       expect{board.starting_board}.to change{board.board}
+    end
+  end
+
+  describe '#move_piece' do
+    it 'changes the board' do
+      board.board[0][0] = Piece.new('white')
+      board.select_piece(0,0)
+      expect{board.move_piece(0,1)}.to change{ board.board[0][1]}.and change{board.board[0][0]}
     end
   end
 end
