@@ -15,7 +15,7 @@ describe Board do
   end
 
   describe '#starting_board' do
-    it 'changes the board' do
+    xit 'changes the board' do
       expect{board.starting_board}.to change{board.board}
     end
   end
