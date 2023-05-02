@@ -1,4 +1,5 @@
 require './lib/board'
+
 describe Board do
   subject(:board) { described_class.new() }
   describe '#initialize' do
@@ -17,6 +18,5 @@ describe Board do
     it 'changes the board' do
       expect{board.starting_board}.to change{board.board}
     end
-  
   end
 end
