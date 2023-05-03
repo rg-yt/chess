@@ -1,4 +1,5 @@
-require './lib/piece'
+require './lib/pieces'
+
 class Board
   attr_accessor :board, :piece
 
@@ -23,36 +24,40 @@ class Board
 
   def starting_board
     place_pawns('white', 6)
-    place_row('white')
+    place_row('white', 7)
     place_pawns('black', 1)
-    place_row('black')
+    place_row('black', 0)
     board
   end
 
   def place_pawns(color, row)
-    board[row].map!.with_index {|piece, column| piece = Piece.new(color)}
+    board[row].map!{|piece| piece = Pawn.new(color)}
   end
 
-  def place_row(color)
-    color == 'white' ? board[7] = initial_row : board[0] = initial_row
-  end
-
-  def initial_row
-    ['r', 'k', 'b', 'Q', 'K', 'b', 'k', 'r' ]
+  def place_row(color, row)
+    board[row] =
+      [Rook.new(color),
+       Knight.new(color),
+       Bishop.new(color),
+       Queen.new(color),
+       King.new(color),
+       Bishop.new(color),
+       Knight.new(color),
+       Rook.new(color)]
   end
 
   def show_board
     board.each_with_index do |row, index|
       print index
-      row.each {|item| !item.nil? ? (print "|#{item} |") : (print '| _ |') }
+      row.each { |item| !item.nil? ? (print "|#{item} |") : (print '| _ |') }
       puts ''
     end
     print ' '
-    8.times{|num| print "  #{num}  "}
+    8.times { |num| print "  #{num}  " }
+    puts ''
   end
 end
 
 board = Board.new
-board.board[0][0] = Piece.new('white')
-board.board[7][7] = Piece.new('black')
-board.select_piece(0, 1)
+board.starting_board
+board.show_board
