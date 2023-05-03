@@ -31,7 +31,7 @@ class Board
   end
 
   def place_pawns(color, row)
-    board[row].map!{|piece| piece = Pawn.new(color)}
+    board[row].map! { Pawn.new(color) }
   end
 
   def place_row(color, row)
