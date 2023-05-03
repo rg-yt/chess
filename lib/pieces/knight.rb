@@ -4,4 +4,7 @@ class Knight < Piece
     super(color)
     @character = 'k' << color[0]
   end
+  def get_moves(*args)
+    []
+  end
 end

@@ -1,11 +1,11 @@
 require './lib/pieces'
 
 class Board
-  attr_accessor :board, :piece
-
+  attr_accessor :board, :piece, :players
   def initialize
     @board = Array.new(8) { Array.new(8) }
     @piece = {}
+    @players = %w(white black)
   end
 
   def select_piece(row, column)
@@ -31,7 +31,7 @@ class Board
   end
 
   def place_pawns(color, row)
-    board[row].map! { Pawn.new(color) }
+    board[row].map!{ |piece| piece = Pawn.new(color) }
   end
 
   def place_row(color, row)
@@ -56,11 +56,38 @@ class Board
     8.times { |num| print "  #{num}  " }
     puts ''
   end
+
+  def find_colors_king(color)
+    board.each do |row|
+      row.find do |piece|
+        next unless piece
+        piece.color == 'white' 
+      end
+    end
+  end
+  
+  def current_player
+    players[0]
+  end
+
+  def switch_player!
+    players.rotate!(1)
+  end
+
+  def in_check?
+    array = []
+    board.each_with_index do |line, row|
+      line.each_with_index do |piece, column|
+        next if piece.nil?
+
+        piece.get_moves(row, column, board).each do |move|
+          next if piece 
+          piece = board.dig(move.first, move.last) 
+          array << piece.is_a?(King) && piece.color != current_player
+        end
+      end
+    end
+    array.any? {|value| value == true}
+  end
 end
 
-board = Board.new
-board.starting_board
-board.board[5][0] = Pawn.new('black')
-board.board[5][2] = Pawn.new('white')
-board.show_board
-board.select_piece(6, 1)

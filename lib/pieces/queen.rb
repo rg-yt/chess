@@ -4,4 +4,7 @@ class Queen < Piece
     super(color)
     @character = 'Q' << color[0]
   end
+  def get_moves(*args)
+    []
+  end
 end

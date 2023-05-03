@@ -4,7 +4,7 @@ class Rook < Piece
     super(color)
     @character = 'r' << color[0]
   end
-
+  
   def get_moves(row, column, board)
     slide_up(row, column, board) +
       slide_down(row, column, board) +
