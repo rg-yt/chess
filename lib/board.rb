@@ -56,15 +56,6 @@ class Board
     8.times { |num| print "  #{num}  " }
     puts ''
   end
-
-  def find_colors_king(color)
-    board.each do |row|
-      row.find do |piece|
-        next unless piece
-        piece.color == 'white' 
-      end
-    end
-  end
 end
 
 board = Board.new
