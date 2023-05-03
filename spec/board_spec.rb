@@ -23,8 +23,8 @@ describe Board do
   describe '#move_piece' do
     it 'changes the board' do
       board.board[0][0] = Piece.new('white')
-      board.select_piece(0,0)
-      expect{board.move_piece(0,1)}.to change{ board.board[0][1]}.and change{board.board[0][0]}
+      board.select_piece(0, 0)
+      expect{ board.move_piece(0, 1) }.to change{ board.board[0][1]}.and change{board.board[0][0]}
     end
   end
 end
