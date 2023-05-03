@@ -10,11 +10,7 @@ class Piece
     [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]
   end
 
-  def get_moves(row, column, board)
-    all_moves(row, column, board)
-  end
-
-  def all_moves(row, column, board)
+  def valid_moves(row, column, board)
     moves = []
     moveset.each do |move|
       moves << [row, column].zip(move).map { |n| n.reduce(&:+) }
@@ -37,6 +33,6 @@ class Piece
   end
 
   def to_s
-    character
+    self.character
   end
 end
