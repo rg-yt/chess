@@ -1,0 +1,7 @@
+require './lib/pieces/piece'
+require './lib/pieces/king'
+require './lib/pieces/queen'
+require './lib/pieces/knight'
+require './lib/pieces/bishop'
+require './lib/pieces/pawn'
+require './lib/pieces/rook'
