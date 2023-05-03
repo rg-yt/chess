@@ -4,4 +4,7 @@ class Rook < Piece
     super(color)
     @character = 'r' << color[0]
   end
+  
+  def slide_moves()
+  end
 end

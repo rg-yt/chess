@@ -60,4 +60,7 @@ end
 
 board = Board.new
 board.starting_board
+board.board[5][0] = Pawn.new('black')
+board.board[5][2] = Pawn.new('white')
 board.show_board
+board.select_piece(6, 1)

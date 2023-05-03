@@ -33,6 +33,6 @@ class Piece
   end
 
   def to_s
-    self.character
+    character
   end
 end
