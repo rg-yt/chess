@@ -31,7 +31,7 @@ class Board
   end
 
   def place_pawns(color, row)
-    board[row].map!{ |piece| piece = Pawn.new(color) }
+    board[row].map! { Pawn.new(color) }
   end
 
   def place_row(color, row)
@@ -65,29 +65,8 @@ class Board
       end
     end
   end
-  
-  def current_player
-    players[0]
-  end
-
-  def switch_player!
-    players.rotate!(1)
-  end
-
-  def in_check?
-    array = []
-    board.each_with_index do |line, row|
-      line.each_with_index do |piece, column|
-        next if piece.nil?
-
-        piece.get_moves(row, column, board).each do |move|
-          next if piece 
-          piece = board.dig(move.first, move.last) 
-          array << piece.is_a?(King) && piece.color != current_player
-        end
-      end
-    end
-    array.any? {|value| value == true}
-  end
 end
 
+board = Board.new
+board.starting_board
+board.show_board
