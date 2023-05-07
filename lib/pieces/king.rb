@@ -32,10 +32,4 @@ class King < Piece
     end
     moves
   end
-
 end
-king = King.new('white')
-board = Array.new(8) { Array.new(8) }
-board[2][2] = king
-
-king.get_moves(2,2, board)
