@@ -6,10 +6,6 @@ class Rook < Piece
     @character = 'r' << color[0]
   end
 
-  def moves
-    [[1, 0], [0, -1], [0, 1], [-1, 0]]
-  end
-
   def get_moves(row, column, board)
     slide_up(row, column, board) +
       slide_down(row, column, board) +
