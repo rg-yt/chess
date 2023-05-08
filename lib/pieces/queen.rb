@@ -95,4 +95,6 @@ class Queen < Piece
 
     slide_right(row, column + 1, board, array)
   end
+
 end
+

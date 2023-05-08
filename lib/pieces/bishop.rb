@@ -54,4 +54,3 @@ class Bishop < Piece
   end
 
 end
-
