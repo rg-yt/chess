@@ -11,9 +11,8 @@ class Game
     board.starting_board
     loop do
       select_piece
-      options
+      move_piece
       switch_player
-
     end
   end 
 
@@ -24,29 +23,30 @@ class Game
   def select_piece
     board.show_board
     board.select_piece(current_player)
+    options
   end
 
   def move_piece
-    board.show_board
-    board.move_piece
+    loop do
+      board.show_board
+      break if board.move_piece
+    end
   end
 
   def options
-    board.show_board
     print "#{board.piece[:object]} is selected\n"
-    print 'Would you like to move piece or change piece?'
-    answer = gets.chomp.upcase[0]
-    case answer
-    when 'M'
-      options unless move_piece
-    when 'C'
-      select_piece
-      options
-    else 
-      answer = gets.chomp.upper[0]
-    end
+    print "Would you like to move piece or change \n"
   end
   
+  # def move_or_change
+  #   answer = gets.chomp
+  #   loop do
+  #     answer = answer.slice(0)
+  #     break if answer.match(/^[a-zA-Z]/)
+  #     answer = gets.chomp
+  #   end
+  #   answer[0].upcase == 'M' ? move_piece : select_piece
+  # end
 end 
 
 game = Game.new 

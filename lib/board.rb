@@ -8,7 +8,7 @@ class Board
     @piece = {}
   end
 
-  def select_piece(color, row = select_row, column = select_column)
+  def select_piece(color, row = select_row(color), column = select_column(color))
     @piece[:object] = board.dig(row, column)
     @piece[:row] = row
     @piece[:column] = column
@@ -16,12 +16,13 @@ class Board
     select_piece(color) until @piece[:object] && @piece[:object].color == color
   end
 
-  def move_piece(row = select_row, column = select_column)
+  def move_piece(color = piece[:object].color, row = select_row(color), column = select_column(color))
     return false unless include_moves(row, column)
 
     board[row][column] = piece[:object]
     board[piece[:row]][piece[:column]] = nil
     undo_move(row, column) if in_check?
+    update_move_status
     true
   end
 
@@ -88,19 +89,23 @@ class Board
     end
   end
 
-  def select_row
+  def select_row(color)
     loop do
-      print 'Select row:'
+      print "Player #{color} select row:"
       value = gets.chomp.to_i
       return value if value.between?(0, 7)
     end
   end
 
-  def select_column
+  def select_column(color)
     loop do
-      print 'Select column:'
+      print "Player #{color} select column:"
       value = gets.chomp.to_i
       return value if value.between?(0, 7)
     end
+  end
+
+  def update_move_status
+    piece[:object].moved = true if piece[:object].is_a?(Pawn)
   end
 end
